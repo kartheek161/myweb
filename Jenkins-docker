@@ -40,9 +40,9 @@ pipeline{
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t kartheek161/spring-boot-apple.'
+                 sh 'docker build -t kartheek161/spring-boot-mango .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name karthrrk1 -p 3900:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name srini26 -p 3900:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
@@ -50,7 +50,7 @@ pipeline{
                   withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
                       sh "docker login -u kartheek161 -p ${DOCKER_HUB_CREDENTIALS}"
             }
-            sh 'docker push kartheek161/spring-boot-apple'
+            sh 'docker push kartheek161/spring-boot-mango'
         }
       }
         
